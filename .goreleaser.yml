@@ -1,0 +1,12 @@
+env:
+  - CGO_ENABLED=0
+
+builds:
+  - binary: go-matrix-webhook
+    main: ./cmd/go-matrix-webhook
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm
+      - arm64
