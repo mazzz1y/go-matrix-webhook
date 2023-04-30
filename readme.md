@@ -53,7 +53,7 @@ Alternatively, you can set these options using command-line flags. Run `./go-mat
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"type": "m.login.password", "identifier": {"type": "m.id.user", "user": "<bot username>"}, "password": "<bot password>", "initial_device_display_name": "Webhook Client"}' "https://<your-server>/_matrix/client/r0/login"
 ```
-Get `access_token` from curl output. Don't forget to add bot to your room!
+Get the `access_token` from the curl output and pass it into this application along with other required variables. Don't forget to add the bot to your room!
 ### Send Messages
 
 To send a message, simply make a POST request with the following structure:
