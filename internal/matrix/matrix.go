@@ -19,6 +19,11 @@ func NewMatrix(serverUrl string, userID string, token string) (*Matrix, error) {
 	return &Matrix{c}, nil
 }
 
+func (m Matrix) JoinRoom(roomID string) error {
+	_, err := m.client.JoinRoom(roomID, "", nil)
+	return err
+}
+
 func (m Matrix) SendMessage(roomID, message string) error {
 	_, err := m.client.SendMessageEvent(id.RoomID(roomID), event.EventMessage, &event.MessageEventContent{
 		MsgType: event.MsgText,

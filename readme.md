@@ -33,30 +33,28 @@ Replace `your_secret_header`, `your_matrix_access_token`, `your_matrix_id`, and 
 ./go-matrix-webhook
 ```
 
-## Usage
-
-### Create access token
-```bash
-curl -X POST -H "Content-Type: application/json" -d '{"type": "m.login.password", "identifier": {"type": "m.id.user", "user": "<bot username>"}, "password": "<bot password>", "initial_device_display_name": "Webhook Client"}' "https://<your-server>/_matrix/client/r0/login"
-```
-
-Get `access_token` from curl output.
-
-### Configuration
+## Configuration
 
 You can configure Go-Matrix-Webhook using the following environment variables:
 
 - `LISTEN_ADDR`: The address on which the webhook server listens (default: "0.0.0.0").
 - `LISTEN_PORT`: The port on which the webhook server listens (default: 8080).
 - `LISTEN_PATH`: The path on which the webhook server listens (default: "/").
-- `SECRET_HEADER`: A custom header for added security.
+- `SECRET_HEADER`: Pre-shared `X-Secret` security header.
 - `MATRIX_ACCESS_TOKEN`: The access token for your Matrix account.
 - `MATRIX_ID`: Your Matrix user ID.
 - `MATRIX_URL`: The URL of the Matrix homeserver.
 
 Alternatively, you can set these options using command-line flags. Run `./go-matrix-webhook --help` for more information.
 
-### Sending Messages
+## Usage
+
+### Create access token
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"type": "m.login.password", "identifier": {"type": "m.id.user", "user": "<bot username>"}, "password": "<bot password>", "initial_device_display_name": "Webhook Client"}' "https://<your-server>/_matrix/client/r0/login"
+```
+Get `access_token` from curl output. Don't forget to add bot to your room!
+### Send Messages
 
 To send a message, simply make a POST request with the following structure:
 
