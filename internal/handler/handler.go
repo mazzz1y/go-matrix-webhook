@@ -29,7 +29,12 @@ func NewHandler(m matrix.Matrix, s string) func(http.ResponseWriter, *http.Reque
 		payload, err := parsePayload(r)
 		if err != nil {
 			response(w, http.StatusBadRequest, "")
-			log.Error().Str("room_id", payload.RoomID).Err(err).Msg("parse body error")
+			log.Debug().Str("room_id", payload.RoomID).Err(err).Msg("parse body error")
+			return
+		}
+		if payload.Message == "" {
+			response(w, http.StatusBadRequest, "empty message")
+			log.Debug().Str("room_id", payload.RoomID).Err(err).Msg("empty message")
 			return
 		}
 
@@ -40,7 +45,7 @@ func NewHandler(m matrix.Matrix, s string) func(http.ResponseWriter, *http.Reque
 			return
 		}
 
-		log.Debug().Str("room_id", payload.RoomID).Msg("sent msg")
+		log.Debug().Str("room_id", payload.RoomID).Msg("message sent")
 		response(w, http.StatusOK, "")
 	}
 }
