@@ -9,4 +9,5 @@ RUN cd /src && \
 
 FROM alpine:3.17 
 COPY --from=build /go-matrix-webhook /
+USER 1337
 CMD /go-matrix-webhook
