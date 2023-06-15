@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"github.com/mazzz1y/go-matrix-webhook/internal/handler"
 	"github.com/mazzz1y/go-matrix-webhook/internal/matrix"
 	"github.com/rs/zerolog/log"
@@ -28,12 +27,9 @@ func run(c *cli.Context) error {
 	if err != nil {
 		panic(err)
 	}
-	h := handler.NewHandler(*m, secretHeader)
-
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc(listenPath, h).Methods("POST")
+	http.HandleFunc(listenPath, handler.NewHandler(*m, secretHeader))
 
 	listen := fmt.Sprintf("%s:%d", listenAddr, listenPort)
 	log.Info().Err(err).Msgf("listen on: %s", listen)
-	return http.ListenAndServe(listen, router)
+	return http.ListenAndServe(listen, nil)
 }

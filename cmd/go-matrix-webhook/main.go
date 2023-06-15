@@ -36,10 +36,9 @@ func main() {
 				Value:   "/",
 			},
 			&cli.StringFlag{
-				Name:     "secret-header",
-				Usage:    "secret header",
-				EnvVars:  []string{"SECRET_HEADER"},
-				Required: true,
+				Name:    "secret-header",
+				Usage:   "secret header",
+				EnvVars: []string{"SECRET_HEADER"},
 			},
 			&cli.StringFlag{
 				Name:     "matrix-access-token",

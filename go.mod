@@ -3,7 +3,6 @@ module github.com/mazzz1y/go-matrix-webhook
 go 1.20
 
 require (
-	github.com/gorilla/mux v1.8.0
 	github.com/rs/zerolog v1.29.1
 	github.com/urfave/cli/v2 v2.25.1
 	maunium.net/go/mautrix v0.15.1
